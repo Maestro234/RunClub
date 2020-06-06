@@ -26,8 +26,8 @@ import { setNavigator } from "./src/navigationRef";
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
-    signup: SignupScreen,
     signin: SigninScreen,
+    signup: SignupScreen,
   }),
   mainFlow: createBottomTabNavigator({
     dashboard: Dashboard,

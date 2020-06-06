@@ -45,6 +45,10 @@ const ProfileScreen = ({ navigation }) => {
   );
 };
 
+ProfileScreen.navigationOptions = {
+  headerShown: false,
+};
+
 const styles = StyleSheet.create({
   text: {
     fontSize: 48,
