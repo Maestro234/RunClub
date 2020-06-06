@@ -1,41 +1,25 @@
-import React, { useState, useReducer } from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet } from "react-native";
-import { Text, Button, Input } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
-import Spacer from "../components/Spacer";
+import AuthForm from "../components/AuthForm";
+import { Context as AuthContext } from "../context/AuthContext";
+import NavLink from "../components/NavLink";
 
 const SignupScreen = ({ navigation }) => {
-  //create states
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { state, signup } = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
-      <Spacer>
-        <Text h3>Sign Up</Text>
-      </Spacer>
-      <Input
-        label="Your Email Address"
-        placeholder="email@address.com"
-        leftIcon={{ type: "font-awesome", name: "envelope" }}
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
-        autoCorrect={false}
+      <AuthForm
+        headerText="Sign Up"
+        errorMessage={state.errorMessage}
+        onSubmit={signup}
+        buttonTitle="Sign Up"
       />
-      <Input
-        label="Password"
-        placeholder="Password"
-        leftIcon={{ type: "font-awesome", name: "lock" }}
-        value={password}
-        onChangeText={setPassword}
-        autoCapitalize="none"
-        autoCorrect={false}
-        secureTextEntry
+      <NavLink
+        routeName="signin"
+        text="Already have an account? Click here to sign in"
       />
-      <Spacer>
-        <Button title="Sign Up" />
-      </Spacer>
     </View>
   );
 };

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import RunDetailScreen from "./src/screens/RunDetailScreen";
 import RunListScreen from "./src/screens/RunListScreen";
@@ -16,12 +15,14 @@ import CompletedChallengeListScreen from "./src/screens/CompletedChallengeListSc
 import MyGoalScreen from "./src/screens/MyGoalScreen";
 import MyPlanScreen from "./src/screens/MyPlanScreen";
 import TrailsNearByScreen from "./src/screens/TrailsNearByScreen";
-import TrailsDetailScreen from "./src/screens/TrailDetailScreen";
+import TrailDetailScreen from "./src/screens/TrailDetailScreen";
+import AccountScreen from "./src/screens/AccountScreen";
 
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Provider as AuthProvider } from "./src/context/AuthContext";
+import { setNavigator } from "./src/navigationRef";
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
@@ -46,26 +47,30 @@ const switchNavigator = createSwitchNavigator({
     exploreFlow: createStackNavigator({
       explore: ExploreScreen,
       trailsNearBy: TrailsNearByScreen,
-      trailDetail: TrailsDetailScreen,
+      trailDetail: TrailDetailScreen,
     }),
+    account: AccountScreen,
   }),
 });
 
 const App = createAppContainer(switchNavigator);
 
 /* 
-
-   AuthProvider 
-        |
-        V
-    Navigator
-
+  AuthProvider 
+      |
+      V
+      App
+  Navigator
 */
 
 export default () => {
   return (
     <AuthProvider>
-      <App />
+      <App
+        ref={(navigator) => {
+          setNavigator(navigator);
+        }}
+      />
     </AuthProvider>
   );
 };
