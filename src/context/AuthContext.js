@@ -11,9 +11,30 @@ const authReducer = (state, action) => {
     case "signin":
       //once user signs up/in remove all other state and return only token state
       return { token: action.payload };
+    case "clear_error_message":
+      //return new state obj, copy over existing states and reset errorMessage
+      return { ...state, errorMessage: "" };
+    case "signout":
+      return { token: null, errorMessage: "" };
     default:
       return state;
   }
+};
+
+const autoSignin = (dispatch) => async () => {
+  const token = await AsyncStorage.getItem("token");
+  if (token) {
+    dispatch({ type: "signin", payload: token });
+    navigate("dashboard");
+  } else {
+    navigate("loginFlow");
+  }
+};
+
+//modify state and set error message to empty when switching screens
+const clearErrorMessage = (dispatch) => () => {
+  //dispacth action to cause state obj to be updated
+  dispatch({ type: "clear_error_message" });
 };
 
 //create an sign up action function
@@ -66,12 +87,14 @@ const signin = (dispatch) => async ({ email, password }) => {
 };
 
 //create an sign in action function
-const signout = (dispatch) => {
-  return ({}) => {};
+const signout = (dispatch) => async () => {
+  await AsyncStorage.removeItem("token");
+  dispatch({ type: "signout" });
+  navigate("loginFlow");
 };
 
 export const { Context, Provider } = createDataContext(
   authReducer,
-  { signin, signup, signout },
+  { signin, signup, signout, clearErrorMessage, autoSignin },
   { token: null, errorMessage: "" }
 );

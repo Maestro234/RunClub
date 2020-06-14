@@ -17,6 +17,7 @@ import MyPlanScreen from "./src/screens/MyPlanScreen";
 import TrailsNearByScreen from "./src/screens/TrailsNearByScreen";
 import TrailDetailScreen from "./src/screens/TrailDetailScreen";
 import AccountScreen from "./src/screens/AccountScreen";
+import LoadingScreen from "./src/screens/LoadingScreen";
 
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
@@ -25,9 +26,10 @@ import { Provider as AuthProvider } from "./src/context/AuthContext";
 import { setNavigator } from "./src/navigationRef";
 
 const switchNavigator = createSwitchNavigator({
+  loading: LoadingScreen,
   loginFlow: createStackNavigator({
-    signup: SignupScreen,
     signin: SigninScreen,
+    signup: SignupScreen,
   }),
   mainFlow: createBottomTabNavigator({
     dashboard: Dashboard,
