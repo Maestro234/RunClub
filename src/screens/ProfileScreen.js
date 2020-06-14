@@ -1,9 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import HeaderTop from "../components/Header";
 
 const ProfileScreen = ({ navigation }) => {
   return (
     <>
+      <HeaderTop title="Profile" />
+
       <Text style={styles.text}>Profile Screen</Text>
       <Button
         title="Go to Edit Profile"

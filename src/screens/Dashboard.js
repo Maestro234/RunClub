@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
-import { Header, Card, ListItem } from "react-native-elements";
+import { Card, ListItem } from "react-native-elements";
 import { ProgressChart } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import { FlatList } from "react-native-gesture-handler";
+import Header from "../components/Header";
 
 const Dashboard = ({ navigation }) => {
   const screenWidth = Dimensions.get("window").width;
@@ -51,19 +52,7 @@ const Dashboard = ({ navigation }) => {
 
   return (
     <>
-      <Header
-        statusBarProps={{ barStyle: "light-content" }}
-        barStyle="light-content"
-        leftComponent={{ icon: "person", color: "#fff" }}
-        centerComponent={{
-          text: "Dashboard",
-          style: { color: "#fff" },
-        }}
-        rightComponent={{ icon: "settings", color: "#fff" }}
-        containerStyle={{
-          justifyContent: "space-around",
-        }}
-      />
+      <Header text="Dashboard" />
 
       <Card title="Today - June 6, 2020" justifyContent="center">
         <ProgressChart
