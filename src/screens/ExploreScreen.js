@@ -5,7 +5,7 @@ import HeaderTop from "../components/Header";
 const ExploreScreen = ({ navigation }) => {
   return (
     <>
-      <HeaderTop title="Account" />
+      <HeaderTop title="Explore" />
       <Text style={styles.text}>Explore</Text>
       <Button
         title="Go to Trails Near by"
