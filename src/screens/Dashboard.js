@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import { Header, Card, ListItem } from "react-native-elements";
 import { ProgressChart } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
-import { TabView, SceneMap } from "react-native-tab-view";
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import { FlatList } from "react-native-gesture-handler";
 
